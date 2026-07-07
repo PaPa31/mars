@@ -22,8 +22,8 @@ echo "  Learn who I am."
 echo
 
 echo "Protocol:"
-echo "  1. Read README.md"
-echo "  2. Read doc/avatar.md"
+echo "  1. Read avatar/README.md"
+echo "  2. Read avatar/doc/avatar.md"
 echo "  3. Stop"
 echo "     Do not infer additional steps."
 echo "     Do not propose plans."
