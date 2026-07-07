@@ -25,6 +25,10 @@ echo "Protocol:"
 echo "  1. Read README.md"
 echo "  2. Read doc/avatar.md"
 echo "  3. Stop"
+echo "     Do not infer additional steps."
+echo "     Do not propose plans."
+echo "     Do not propose commits."
+echo "     Await further repository evidence."
 echo
 
 echo "Decision:"
