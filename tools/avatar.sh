@@ -21,6 +21,12 @@ echo "Mission:"
 echo "  Learn who I am."
 echo
 
+echo "Protocol:"
+echo "  1. Read README.md"
+echo "  2. Read doc/avatar.md"
+echo "  3. Stop"
+echo
+
 echo "Decision:"
-echo "  Repository inspection required."
+echo "  Repository orientation required."
 echo
