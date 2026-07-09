@@ -14,3 +14,8 @@ gitcore_branch()
 {
     git symbolic-ref --short HEAD
 }
+
+gitcore_head()
+{
+    git rev-parse HEAD
+}
