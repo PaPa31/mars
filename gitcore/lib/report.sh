@@ -1,6 +1,7 @@
 #!/bin/sh
 
 . "$script_dir/../lib/environment.sh"
+. "$script_dir/../lib/repository.sh"
 
 gitcore_report()
 {
@@ -17,4 +18,19 @@ gitcore_report()
         "Current directory:"
 
     printf '    %s\n' "$(gitcore_pwd)"
+
+    printf '%s\n' \
+    "" \
+    "Repository" \
+    "----------" \
+    ""
+
+    printf '%s' "Git repository:"
+
+    if gitcore_is_repository
+    then
+        printf '\n    yes\n'
+    else
+        printf '\n    no\n'
+    fi
 }
