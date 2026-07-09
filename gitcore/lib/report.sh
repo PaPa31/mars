@@ -36,6 +36,12 @@ gitcore_report()
             "Repository root:"
 
         printf '    %s\n' "$(gitcore_repo_root)"
+
+        printf '%s\n' \
+            "" \
+            "Branch:"
+
+        printf '    %s\n' "$(gitcore_branch)"
     else
         printf '\n    no\n'
     fi

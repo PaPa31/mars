@@ -9,3 +9,8 @@ gitcore_repo_root()
 {
     git rev-parse --show-toplevel
 }
+
+gitcore_branch()
+{
+    git symbolic-ref --short HEAD
+}
