@@ -30,6 +30,12 @@ gitcore_report()
     if gitcore_is_repository
     then
         printf '\n    yes\n'
+
+        printf '%s\n' \
+            "" \
+            "Repository root:"
+
+        printf '    %s\n' "$(gitcore_repo_root)"
     else
         printf '\n    no\n'
     fi
