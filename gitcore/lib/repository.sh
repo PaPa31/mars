@@ -19,3 +19,13 @@ gitcore_head()
 {
     git rev-parse HEAD
 }
+
+gitcore_is_repository_clean()
+{
+    if [ -n "$(git status --porcelain)" ]
+    then
+        printf 'no\n'
+    else
+        printf 'yes\n'
+    fi
+}

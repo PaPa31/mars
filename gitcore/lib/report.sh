@@ -48,6 +48,12 @@ gitcore_report()
             "HEAD:"
 
         printf '    %s\n' "$(gitcore_head)"
+
+        printf '%s\n' \
+            "" \
+            "Repository clean:"
+
+        printf '    %s\n' "$(gitcore_is_repository_clean)"
     else
         printf '\n    no\n'
     fi
