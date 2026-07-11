@@ -31,3 +31,21 @@ gitcore_is_directory()
 {
     [ -d "$1" ]
 }
+
+###############################################################################
+# gitcore_path_exists
+#
+# Determine whether a path exists.
+#
+# Usage:
+#     gitcore_path_exists PATH
+#
+# Exit status:
+#     0  Path exists.
+#     1  Path does not exist.
+###############################################################################
+
+gitcore_path_exists()
+{
+    [ -e "$1" ]
+}
