@@ -67,3 +67,21 @@ gitcore_is_regular_file()
 {
     [ -f "$1" ]
 }
+
+###############################################################################
+# gitcore_is_symbolic_link
+#
+# Determine whether a path refers to a symbolic link.
+#
+# Usage:
+#     gitcore_is_symbolic_link PATH
+#
+# Exit status:
+#     0  Path is a symbolic link.
+#     1  Path is not a symbolic link.
+###############################################################################
+
+gitcore_is_symbolic_link()
+{
+    [ -L "$1" ]
+}
