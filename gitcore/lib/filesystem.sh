@@ -104,7 +104,10 @@ gitcore_is_symbolic_link()
 
 gitcore_path_type()
 {
-    if ! gitcore_path_exists "$1"
+    if gitcore_is_symbolic_link "$1"
+    then
+        printf 'symbolic link\n'
+    elif ! gitcore_path_exists "$1"
     then
         printf 'missing\n'
     elif gitcore_is_directory "$1"
@@ -113,9 +116,6 @@ gitcore_path_type()
     elif gitcore_is_regular_file "$1"
     then
         printf 'regular file\n'
-    elif gitcore_is_symbolic_link "$1"
-    then
-        printf 'symbolic link\n'
     else
         printf 'other\n'
     fi

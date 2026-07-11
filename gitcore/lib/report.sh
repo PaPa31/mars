@@ -30,22 +30,27 @@ gitcore_report()
 
     if gitcore_is_repository
     then
+
+        repo_root=$(gitcore_repo_root)
+
         printf '\n    yes\n'
 
         printf '%s\n' \
             "" \
             "Repository root:"
 
-        printf '    %s\n' "$(gitcore_repo_root)"
+        printf '    %s\n' "$repo_root"
 
         printf '%s\n' \
             "" \
             "Repository root entries:"
 
-        gitcore_directory_entries "$(gitcore_repo_root)" |
+        gitcore_directory_entries "$repo_root" |
         while IFS= read -r entry
         do
-            printf '    %s\n' "$entry"
+            printf '    %s (%s)\n' \
+                "$entry" \
+                "$(gitcore_path_type "$repo_root/$entry")"
         done
 
         printf '%s\n' \
