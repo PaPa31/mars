@@ -2,6 +2,7 @@
 
 . "$script_dir/../lib/environment.sh"
 . "$script_dir/../lib/repository.sh"
+. "$script_dir/../lib/filesystem.sh"
 
 gitcore_report()
 {
@@ -36,6 +37,16 @@ gitcore_report()
             "Repository root:"
 
         printf '    %s\n' "$(gitcore_repo_root)"
+
+        printf '%s\n' \
+            "" \
+            "Repository root entries:"
+
+        gitcore_directory_entries "$(gitcore_repo_root)" |
+        while IFS= read -r entry
+        do
+            printf '    %s\n' "$entry"
+        done
 
         printf '%s\n' \
             "" \
