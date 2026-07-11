@@ -49,3 +49,21 @@ gitcore_path_exists()
 {
     [ -e "$1" ]
 }
+
+###############################################################################
+# gitcore_is_regular_file
+#
+# Determine whether a path refers to a regular file.
+#
+# Usage:
+#     gitcore_is_regular_file PATH
+#
+# Exit status:
+#     0  Path is a regular file.
+#     1  Path is not a regular file.
+###############################################################################
+
+gitcore_is_regular_file()
+{
+    [ -f "$1" ]
+}
