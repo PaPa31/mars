@@ -85,3 +85,38 @@ gitcore_is_symbolic_link()
 {
     [ -L "$1" ]
 }
+
+###############################################################################
+# gitcore_path_type
+#
+# Classify the type of a path.
+#
+# Usage:
+#     gitcore_path_type PATH
+#
+# Output:
+#     missing
+#     directory
+#     regular file
+#     symbolic link
+#     other
+###############################################################################
+
+gitcore_path_type()
+{
+    if ! gitcore_path_exists "$1"
+    then
+        printf 'missing\n'
+    elif gitcore_is_directory "$1"
+    then
+        printf 'directory\n'
+    elif gitcore_is_regular_file "$1"
+    then
+        printf 'regular file\n'
+    elif gitcore_is_symbolic_link "$1"
+    then
+        printf 'symbolic link\n'
+    else
+        printf 'other\n'
+    fi
+}
