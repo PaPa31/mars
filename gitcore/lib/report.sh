@@ -1,6 +1,7 @@
 #!/bin/sh
 
 . "$script_dir/../lib/environment.sh"
+. "$script_dir/../lib/path.sh"
 . "$script_dir/../lib/repository.sh"
 . "$script_dir/../lib/filesystem.sh"
 
