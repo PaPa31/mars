@@ -29,3 +29,20 @@ gitcore_is_repository_clean()
         printf 'yes\n'
     fi
 }
+
+###############################################################################
+# gitcore_repository_tags
+#
+# Print repository tags matching a pattern.
+#
+# Usage:
+#     gitcore_repository_tags PATTERN
+#
+# Output:
+#     Matching tag names, one per line.
+###############################################################################
+
+gitcore_repository_tags()
+{
+    git tag -l "$1"
+}
