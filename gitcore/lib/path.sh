@@ -57,3 +57,28 @@ gitcore_path_is_hidden()
             ;;
     esac
 }
+
+###############################################################################
+# gitcore_path_is_absolute
+#
+# Determine whether a path is absolute.
+#
+# Usage:
+#     gitcore_path_is_absolute PATH
+#
+# Exit status:
+#     0  Path is absolute.
+#     1  Path is relative.
+###############################################################################
+
+gitcore_path_is_absolute()
+{
+    case "$1" in
+        /*)
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
