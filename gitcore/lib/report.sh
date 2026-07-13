@@ -71,6 +71,24 @@ gitcore_report()
             "Repository clean:"
 
         printf '    %s\n' "$(gitcore_is_repository_clean)"
+
+        printf '%s\n' \
+            "" \
+            "Unconsumed capabilities" \
+            "------------------------" \
+            ""
+
+        tags=$(gitcore_repository_tags 'unconsumed/*')
+        if [ -z "$tags" ]
+        then
+            printf '    none\n'
+        else
+            printf '%s\n' "$tags" |
+            while IFS= read -r tag
+            do
+                printf '    %s\n' "${tag#unconsumed/}"
+            done
+        fi
     else
         printf '\n    no\n'
     fi
