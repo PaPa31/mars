@@ -58,7 +58,12 @@ gitcore_report()
             "" \
             "Branch:"
 
-        printf '    %s\n' "$(gitcore_branch)"
+        if gitcore_head_is_detached
+        then
+            printf '    detached\n'
+        else
+            printf '    %s\n' "$(gitcore_branch)"
+        fi
 
         printf '%s\n' \
             "" \
