@@ -56,7 +56,23 @@ gitcore_report()
 
         printf '%s\n' \
             "" \
-            "Branch:"
+            "Repository state" \
+            "----------------" \
+
+        printf '%s\n' \
+            "" \
+            "Repository clean:"
+
+        printf '    %s\n' "$(gitcore_is_repository_clean)"
+
+        printf '%s\n' \
+            "" \
+            "References" \
+            "----------" \
+
+        printf '%s\n' \
+            "" \
+            "HEAD reference:"
 
         printf '    %s\n' "$(gitcore_head_reference)"
 
@@ -74,15 +90,12 @@ gitcore_report()
 
         printf '%s\n' \
             "" \
-            "Repository clean:"
-
-        printf '    %s\n' "$(gitcore_is_repository_clean)"
+            "Capabilities" \
+            "------------" \
 
         printf '%s\n' \
             "" \
-            "Unconsumed capabilities" \
-            "------------------------" \
-            ""
+            "Unconsumed capabilities:" \
 
         tags=$(gitcore_repository_tags 'unconsumed/*')
         if [ -z "$tags" ]
