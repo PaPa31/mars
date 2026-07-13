@@ -68,6 +68,12 @@ gitcore_report()
 
         printf '%s\n' \
             "" \
+            "Repository description:"
+
+        printf '    %s\n' "$(gitcore_repository_description)"
+
+        printf '%s\n' \
+            "" \
             "Repository clean:"
 
         printf '    %s\n' "$(gitcore_is_repository_clean)"
