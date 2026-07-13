@@ -40,6 +40,26 @@ gitcore_head_is_detached()
     fi
 }
 
+###############################################################################
+# gitcore_head_reference
+#
+# Print the current HEAD reference.
+#
+# Output:
+#     Branch name if HEAD is attached.
+#     detached if HEAD is detached.
+###############################################################################
+
+gitcore_head_reference()
+{
+    if gitcore_head_is_detached
+    then
+        printf 'detached\n'
+    else
+        gitcore_branch
+    fi
+}
+
 gitcore_is_repository_clean()
 {
     if [ -n "$(git status --porcelain)" ]
