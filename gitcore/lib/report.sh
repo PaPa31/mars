@@ -4,47 +4,44 @@
 . "$script_dir/../lib/path.sh"
 . "$script_dir/../lib/repository.sh"
 . "$script_dir/../lib/filesystem.sh"
+. "$script_dir/../lib/output.sh"
 
 gitcore_report()
 {
-    printf '%s\n' \
+    gitcore_print_section \
         "Git Core Orientation Report" \
-        "===========================" \
-        "" \
-        "Format version:" \
-        "    1" \
-        "" \
+        "==========================="
+
+    gitcore_print_heading "Format version"
+
+    gitcore_print_indented 1
+
+    gitcore_print_section \
         "Environment" \
-        "-----------" \
-        "" \
-        "Current directory:"
+        "-----------"
 
-    printf '    %s\n' "$(gitcore_pwd)"
+    gitcore_print_heading "Current directory"
 
-    printf '%s\n' \
-    "" \
-    "Repository" \
-    "----------" \
-    ""
+    gitcore_print_indented "$(gitcore_pwd)"
 
-    printf '%s' "Git repository:"
+    gitcore_print_section \
+        "Repository" \
+        "----------"
+
+    gitcore_print_heading "Git repository"
 
     if gitcore_is_repository
     then
 
         repo_root=$(gitcore_repo_root)
 
-        printf '\n    yes\n'
+        gitcore_print_indented 'yes'
 
-        printf '%s\n' \
-            "" \
-            "Repository root:"
+        gitcore_print_heading "Repository root"
 
-        printf '    %s\n' "$repo_root"
+        gitcore_print_indented "$repo_root"
 
-        printf '%s\n' \
-            "" \
-            "Repository root entries:"
+        gitcore_print_heading "Repository root entries"
 
         gitcore_directory_entries "$repo_root" |
         while IFS= read -r entry
@@ -54,61 +51,48 @@ gitcore_report()
                 "$(gitcore_path_type "$repo_root/$entry")"
         done
 
-        printf '%s\n' \
-            "" \
+        gitcore_print_section \
             "Repository state" \
-            "----------------" \
+            "----------------"
 
-        printf '%s\n' \
-            "" \
-            "Repository clean:"
+        gitcore_print_heading "Repository clean"
 
-        printf '    %s\n' "$(gitcore_is_repository_clean)"
+        gitcore_print_indented "$(gitcore_is_repository_clean)"
 
-        printf '%s\n' \
-            "" \
+        gitcore_print_section \
             "References" \
-            "----------" \
+            "----------"
 
-        printf '%s\n' \
-            "" \
-            "HEAD reference:"
+        gitcore_print_heading "HEAD reference"
 
-        printf '    %s\n' "$(gitcore_head_reference)"
+        gitcore_print_indented "$(gitcore_head_reference)"
 
-        printf '%s\n' \
-            "" \
-            "HEAD:"
+        gitcore_print_heading "HEAD"
 
-        printf '    %s\n' "$(gitcore_head)"
+        gitcore_print_indented "$(gitcore_head)"
 
-        printf '%s\n' \
-            "" \
-            "Repository description:"
+        gitcore_print_heading "Repository description"
 
-        printf '    %s\n' "$(gitcore_repository_description)"
+        gitcore_print_indented "$(gitcore_repository_description)"
 
-        printf '%s\n' \
-            "" \
+        gitcore_print_section \
             "Capabilities" \
-            "------------" \
+            "------------"
 
-        printf '%s\n' \
-            "" \
-            "Unconsumed capabilities:" \
+        gitcore_print_heading "Unconsumed capabilities"
 
         tags=$(gitcore_repository_tags 'unconsumed/*')
         if [ -z "$tags" ]
         then
-            printf '    none\n'
+            gitcore_print_indented 'none'
         else
             printf '%s\n' "$tags" |
             while IFS= read -r tag
             do
-                printf '    %s\n' "${tag#unconsumed/}"
+                gitcore_print_indented "${tag#unconsumed/}"
             done
         fi
     else
-        printf '\n    no\n'
+        gitcore_print_indented 'no'
     fi
 }
