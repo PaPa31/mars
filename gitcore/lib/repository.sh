@@ -86,3 +86,17 @@ gitcore_repository_tags()
 {
     git tag -l "$1"
 }
+
+###############################################################################
+# gitcore_repository_description
+#
+# Print a human-readable description of the current repository state.
+#
+# Output:
+#     Git describe output.
+###############################################################################
+
+gitcore_repository_description()
+{
+    git describe --tags --always
+}
