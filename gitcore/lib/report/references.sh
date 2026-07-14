@@ -22,4 +22,7 @@ gitcore_report_references()
     do
         gitcore_print_indented "$remote"
     done
+
+    gitcore_print_heading "Default remote"
+    gitcore_print_indented "$(gitcore_default_remote)"
 }
