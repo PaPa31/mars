@@ -2,16 +2,7 @@
 
 . "$script_dir/../lib/repository/head.sh"
 . "$script_dir/../lib/repository/identity.sh"
-
-gitcore_is_repository_clean()
-{
-    if [ -n "$(git status --porcelain)" ]
-    then
-        printf 'no\n'
-    else
-        printf 'yes\n'
-    fi
-}
+. "$script_dir/../lib/repository/state.sh"
 
 ###############################################################################
 # gitcore_repository_tags
