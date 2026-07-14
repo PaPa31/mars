@@ -15,4 +15,11 @@ gitcore_report_references()
 
     gitcore_print_heading "Upstream branch"
     gitcore_print_indented "$(gitcore_upstream_branch)"
+
+    gitcore_print_heading "Remotes"
+    gitcore_repository_remotes |
+    while IFS= read -r remote
+    do
+        gitcore_print_indented "$remote"
+    done
 }
