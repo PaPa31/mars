@@ -4,6 +4,7 @@
 . "$script_dir/../lib/repository/identity.sh"
 . "$script_dir/../lib/repository/state.sh"
 . "$script_dir/../lib/repository/tracking.sh"
+. "$script_dir/../lib/repository/remote.sh"
 
 ###############################################################################
 # gitcore_repository_tags
