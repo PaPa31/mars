@@ -3,6 +3,7 @@
 . "$script_dir/../lib/repository/head.sh"
 . "$script_dir/../lib/repository/identity.sh"
 . "$script_dir/../lib/repository/state.sh"
+. "$script_dir/../lib/repository/tracking.sh"
 
 ###############################################################################
 # gitcore_repository_tags
