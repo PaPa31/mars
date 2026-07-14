@@ -21,3 +21,23 @@ gitcore_repository_remotes()
         printf 'none\n'
     fi
 }
+
+###############################################################################
+# gitcore_default_remote
+#
+# Print the default repository remote.
+#
+# Output:
+#     Remote name.
+#     none if no default remote exists.
+###############################################################################
+
+gitcore_default_remote()
+{
+    if git remote get-url origin >/dev/null 2>&1
+    then
+        printf 'origin\n'
+    else
+        printf 'none\n'
+    fi
+}
