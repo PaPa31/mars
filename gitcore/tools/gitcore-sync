@@ -1,0 +1,36 @@
+#!/bin/sh
+
+echo "===== README ====="
+cat README.md
+
+echo
+echo "===== HANDSHAKE ====="
+cat doc/handshake.md
+
+echo
+echo "===== RECENT HISTORY ====="
+git log --decorate --graph --stat --summary --max-count=30
+
+echo
+echo "===== PUBLIC FUNCTIONS ====="
+grep -R "^gitcore_[a-zA-Z0-9_]*()" lib | sort
+
+echo
+echo "===== MODULES ====="
+find lib -type f | sort
+
+echo
+echo "===== TOOLS ====="
+find tools -type f | sort
+
+echo
+echo "===== TAGS ====="
+git tag --list | sort
+
+echo
+echo "===== STATUS ====="
+git status --short --branch
+
+echo
+echo "===== ORIENTATION ====="
+./tools/gitcore-orient
