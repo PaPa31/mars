@@ -12,30 +12,44 @@ The protocol is based on the Git model of snapshots and deltas.
 
 ## Concepts
 
+### Shared State
+
+The shared state is the repository state currently agreed upon by all
+collaborators.
+
+A shared state consists of
+
+- one shared baseline
+- zero or more accepted Message Sync artifacts
+
 ### Repository
 
 The Git repository being synchronized.
 
 ### Baseline
 
-The baseline is the latest complete repository snapshot that has been
-successfully synchronized between collaborators.
+The baseline is the shared repository snapshot from which incremental
+synchronization proceeds.
 
 The baseline serves as the reference state against which subsequent
 incremental synchronizations are interpreted.
 
-A baseline is identified by:
+A baseline is identified by
 
-* repository identity,
-* HEAD commit,
-* recent repository history.
+- repository identity
+- HEAD commit
+- recent repository history
 
-### Delta
+### Message Sync
 
-A delta describes changes relative to the current baseline.
+A Message Sync describes repository evolution relative to the current
+shared baseline.
 
-Deltas are typically represented by `git show HEAD` and any additional
-working-tree changes.
+A Message Sync typically consists of
+
+    git show HEAD
+
+together with working-tree status and any staged or unstaged changes.
 
 ---
 
@@ -43,45 +57,47 @@ working-tree changes.
 
 ### Repo Sync
 
-Purpose: establish repository identity and architecture.
+Purpose
 
-Artifacts:
+Establish repository identity before synchronization.
 
-* `README.md`
-* `doc/handshake.md`
+Artifacts
+
+- README.md
+- doc/handshake.md
 
 ### Session Sync
 
-Purpose: establish or replace the shared baseline.
+Purpose
 
-Command:
+Establish or replace the shared baseline.
 
-```sh
-./tools/gitcore-session-sync
-```
+Command
 
-A Session Sync contains:
+    ./tools/gitcore-session-sync
 
-* repository orientation,
-* recent repository history,
-* complete repository content.
+Contents
+
+- repository orientation
+- recent repository history
+- complete repository content
 
 ### Message Sync
 
-Purpose: synchronize repository evolution relative to the shared baseline.
+Purpose
 
-Command:
+Synchronize repository evolution relative to the shared baseline.
 
-```sh
-./tools/gitcore-message-sync
-```
+Command
 
-A Message Sync contains:
+    ./tools/gitcore-message-sync
 
-* latest committed change (`git show HEAD`),
-* working-tree status,
-* unstaged changes,
-* staged changes.
+Contents
+
+- latest committed change (git show HEAD)
+- working-tree status
+- unstaged changes
+- staged changes
 
 ---
 
@@ -89,13 +105,19 @@ A Message Sync contains:
 
 The synchronization model follows Git semantics.
 
-```text
-Shared Repository State = Baseline + Delta + Delta + ...
-```
+Shared Repository State
 
-A Session Sync establishes a baseline.
+    = Baseline
+    + Message Sync
+    + Message Sync
+    + ...
 
-Each Message Sync advances that baseline incrementally.
+A Session Sync establishes the shared baseline.
+
+Each accepted Message Sync advances the shared baseline.
+
+The shared state consists of the shared baseline together with all
+accepted Message Sync artifacts.
 
 ---
 
@@ -129,25 +151,72 @@ Request confirmation before replacing the current baseline.
 
 ---
 
+## Message Acceptance Protocol
+
+When a Message Sync is received, the following algorithm is applied.
+
+A Message Sync shall only be accepted if it can be applied as a
+fast-forward to the current shared baseline.
+
+If the Message Sync advances the current shared baseline, the shared
+baseline is updated accordingly.
+
+Otherwise, the synchronized state is unchanged.
+
+### Fast-forward
+
+Accept the Message Sync and advance the shared baseline.
+
+### Already synchronized
+
+If the Message Sync describes the current shared baseline, no action is
+required.
+
+### Older Message Sync
+
+Do not modify the shared baseline.
+
+### Diverged history
+
+Do not modify the shared baseline.
+
+A new Session Sync is required to establish a new shared baseline.
+
+### History rewrite
+
+History rewrites, for example
+
+- git reset
+- git rebase
+- force-pushes
+
+invalidate incremental synchronization.
+
+A new Session Sync is required before further Message Sync artifacts can
+be applied.
+
+---
+
 ## History Comparison
 
-Baseline ordering is determined by repository history, not by timestamps.
+Repository history determines whether an incoming Session Sync is
 
-The recent history included in a Session Sync is used to determine whether
-the incoming baseline is newer, older, or diverged relative to the current
-baseline.
+- newer
+- older
+- identical
+- diverged
+
+relative to the current baseline.
 
 ---
 
 ## Artifact Identity
 
-Synchronization artifacts should identify the repository state they describe.
+A Session Sync identifies the synchronized repository state by
 
-A Session Sync should include:
-
-* repository identity,
-* HEAD commit,
-* recent history.
+- repository identity
+- HEAD commit
+- recent history
 
 The filename of the artifact is not part of the protocol.
 
@@ -155,11 +224,22 @@ The filename of the artifact is not part of the protocol.
 
 ## Design Principles
 
-* Synchronize only what has become invalid.
-* Prefer snapshots plus deltas.
-* Keep baselines explicit.
-* Keep deltas minimal.
-* Avoid silent baseline replacement.
-* Make synchronization artifacts self-describing.
-* Keep the protocol independent of any specific AI or transport.
+- Synchronize only what has become invalid
+- Prefer snapshots plus deltas
+- Keep baselines explicit
+- Keep deltas minimal
+- Avoid silent baseline replacement
+- Make synchronization artifacts self-describing
+- Keep the protocol independent of any specific AI or transport
+- Prefer reproducible synchronization over conversational context
 
+---
+
+## Protocol Invariant
+
+The shared state changes only by
+
+- accepting a Session Sync
+- accepting a Message Sync
+
+All other synchronization artifacts leave the shared state unchanged.
