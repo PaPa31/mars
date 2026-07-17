@@ -100,3 +100,7 @@ without requiring manual exploration of the repository.
 
 If collaborators consistently require additional manual orientation,
 the handshake is incomplete.
+
+---
+
+An outdated handshake is considered a defect.
