@@ -1,0 +1,11 @@
+#!/bin/sh
+
+./tools/gitcore-orient
+
+echo
+
+git log --decorate --oneline --graph -20
+
+echo
+
+./tools/gitcore-content-sync

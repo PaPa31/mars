@@ -1,0 +1,15 @@
+#!/bin/sh
+
+git show HEAD
+
+echo
+
+git status --short
+
+echo
+
+git diff
+
+echo
+
+git diff --cached
