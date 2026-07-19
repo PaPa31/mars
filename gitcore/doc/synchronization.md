@@ -42,7 +42,7 @@ A baseline is identified by
 
 ### Message Sync
 
-A Message Sync proposes advancing the shared state from the current shared baseline to a descendant repository state.
+Synchronize repository evolution relative to the shared baseline.
 
 A Message Sync typically consists of
 
@@ -113,7 +113,7 @@ Shared Repository State
 
 A Session Sync establishes the shared baseline.
 
-Each accepted Message Sync advances the shared baseline.
+Each accepted Message Sync advances the shared state.
 
 The shared state consists of the shared baseline together with all
 accepted Message Sync artifacts.
@@ -160,9 +160,11 @@ If accepted, the shared state advances.
 
 Otherwise, the shared state is unchanged.
 
-### Fast-forward
+### Descendant state
 
 Accept the Message Sync and advance the shared baseline.
+
+In Git, this corresponds to a fast-forward update.
 
 ### Already synchronized
 
@@ -188,9 +190,6 @@ History rewrites, for example
 - force-pushes
 
 invalidate incremental synchronization.
-
-A new Session Sync is required before further Message Sync artifacts can
-be applied.
 
 After repository history is rewritten, a new Session Sync is required to establish a new shared baseline.
 
