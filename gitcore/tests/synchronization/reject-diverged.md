@@ -1,15 +1,17 @@
-Initial
+# Reject Diverged History
+
+## Initial Shared State
 
 A → B
 
-Incoming
+## Incoming Artifact
 
 A → X
 
-Expected Decision
+## Expected Decision
 
 No change
 
-Expected Shared State
+## Expected Shared State
 
 A → B

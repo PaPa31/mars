@@ -1,17 +1,21 @@
-Initial Shared State
+# Recover History Rewrite
+
+## Initial Shared State
 
 A → B → C
 
-Repository History
+## Incoming Artifact
 
-rewritten to
+Message Sync
+
+Repository History rewritten to
 
 A → X → Y
 
-Expected Decision
+## Expected Decision
 
 Incremental synchronization invalid.
 
-Expected Action
+## Expected Action
 
 Establish a new Session Sync.

@@ -1,17 +1,19 @@
-Initial Shared State
+# Resume after Session Sync
+
+## Initial Shared State
 
 A → B → C
 
-Incoming
+## Incoming Artifact
 
 New Session Sync
 
 A → X → Y
 
-Expected Decision
+## Expected Decision
 
 Replace shared baseline.
 
-Expected Shared State
+## Expected Shared State
 
 A → X → Y

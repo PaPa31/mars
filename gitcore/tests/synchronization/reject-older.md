@@ -1,15 +1,19 @@
-Initial
+# Reject Older Message Sync
+
+## Initial Shared State
 
 A → B
 
-Incoming
+## Incoming Artifact
+
+Message Sync
 
 A
 
-Expected Decision
+## Expected Decision
 
 No change
 
-Expected Shared State
+## Expected Shared State
 
 A → B
