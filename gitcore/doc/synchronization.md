@@ -152,8 +152,6 @@ Request confirmation before replacing the current baseline.
 
 ## Message Acceptance Protocol
 
-When a Message Sync is received, the following algorithm is applied.
-
 A Message Sync shall be accepted if and only if it advances the current shared state to a descendant repository state.
 
 If accepted, the shared state advances.
@@ -180,6 +178,10 @@ Do not modify the shared baseline.
 Do not modify the shared baseline.
 
 A new Session Sync is required to establish a new shared baseline.
+
+---
+
+## Recovery Procedures
 
 ### History rewrite
 
