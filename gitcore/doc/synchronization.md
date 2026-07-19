@@ -148,6 +148,12 @@ Request confirmation before replacing the current baseline.
 
 Request confirmation before replacing the current baseline.
 
+### Confirmation
+
+When confirmation is requested, the shared state remains unchanged until
+a collaborator explicitly approves replacement of the current shared
+baseline.
+
 ---
 
 ## Message Acceptance Protocol
