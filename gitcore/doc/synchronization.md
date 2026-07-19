@@ -42,7 +42,7 @@ A baseline is identified by
 
 ### Message Sync
 
-Synchronize repository evolution relative to the shared baseline.
+A Message Sync synchronizes repository evolution relative to the shared baseline.
 
 A Message Sync typically consists of
 
@@ -104,11 +104,11 @@ Contents
 
 The synchronization model follows Git semantics.
 
-Shared Repository State
+Shared State
 
     = Baseline
-    + Message Sync
-    + Message Sync
+    + accepted Message Sync
+    + accepted Message Sync
     + ...
 
 A Session Sync establishes the shared baseline.
