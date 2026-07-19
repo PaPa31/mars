@@ -16,6 +16,25 @@ Each test specifies
 Any implementation conforming to the synchronization protocol should
 produce the expected decision and resulting shared state.
 
----
+## Coverage
 
-Line for: Synchronization Conformance Test #1
+Baseline Acceptance Protocol
+
+    ✓ No baseline
+    ✓ Newer baseline
+    ✓ Same baseline
+    ✓ Older baseline
+    ✓ Diverged baseline
+    ✓ Different repository
+
+Message Acceptance Protocol
+
+    ✓ Descendant Message Sync
+    ✓ Identical Message Sync
+    ✓ Older Message Sync
+    ✓ Diverged Message Sync
+
+Recovery Procedures
+
+    ✓ History rewrite
+    ✓ Resume after Session Sync
